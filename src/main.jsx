@@ -1,10 +1,41 @@
-import React from 'react'
+import { createBrowserRouter, RouterProvider} from "react-router-dom";
+import React, { Children } from 'react'
 import ReactDOM from 'react-dom/client'
+import './main.css'
+
 import App from './App.jsx'
-import './index.css'
+import Search from './Components/Search/Search'
+import Favourites from './Components/Favorites/Favourites'
+import Wanttowatch from './Components/Wanttowatch/Wanttowatch'
+import Watched from './Components/Watched/Watched'
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+    children: [
+      {
+        path: "/search",
+        element:<Search />
+      },
+      {
+        path: "/favourites",
+        element:<Favourites />
+      },
+      {
+        path: "/wantotwatch",
+        element:<Wanttowatch />
+      },
+      {
+        path: "/watched",
+        element:<Watched />
+      },
+    ]
+  }
+])
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </React.StrictMode>,
 )
