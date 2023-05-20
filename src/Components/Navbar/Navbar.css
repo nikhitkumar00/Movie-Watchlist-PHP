@@ -1,5 +1,4 @@
 .navbarWrapper {
-    background-color: aqua;
     min-width: 300px;
     height: 100vh;
 }
@@ -25,7 +24,6 @@
 .navbarActive {
     width: 90%;
     height: 50px;
-    background-color: aquamarine;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -33,16 +31,18 @@
     font-family: 'Comfortaa';
     border-radius: 10px;
     border: 1px solid black;
+    color: black;
 }
 
 .navbarInactive {
     width: 90%;
     height: 50px;
-    background-color: aquamarine;
     display: flex;
     justify-content: center;
     align-items: center;
     text-decoration: none;
     font-family: 'Comfortaa';
     border-radius: 10px;
+    box-shadow: 0px 0px 1px black;
+    color: black;
 }
