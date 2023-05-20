@@ -23,7 +23,7 @@ const router = createBrowserRouter([
         element:<Favourites />
       },
       {
-        path: "/wantotwatch",
+        path: "/wanttowatch",
         element:<Wanttowatch />
       },
       {

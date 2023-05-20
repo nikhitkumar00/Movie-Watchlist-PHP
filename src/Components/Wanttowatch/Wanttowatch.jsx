@@ -2,7 +2,7 @@ import './Wanttowatch.css'
 
 const Wanttowatch = () => {
     return (
-        <h1>Want to watch</h1>
+        <div className='wantWrapper'>Want to watch</div>
     )
 }
 

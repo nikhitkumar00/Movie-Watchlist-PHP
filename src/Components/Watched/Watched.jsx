@@ -2,7 +2,7 @@ import './Watched.css'
 
 const Watched = () => {
     return (
-        <h1>Watched</h1>
+        <div className='watchedWrapper'>Watched</div>
     )
 }
 

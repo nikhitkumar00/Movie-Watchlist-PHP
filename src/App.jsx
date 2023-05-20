@@ -4,11 +4,11 @@ import { Outlet } from 'react-router-dom'
 
 function App() {
   return (
-    <div className='wrapper'>
+    <div className='appWrapper'>
       <Navbar />
       <Outlet />
     </div>
   )
 }
 
-export default App
+export default App;

@@ -7,6 +7,7 @@ const Navbar = () => {
       <div className="navbarHeader">NIKHIT KUMAR</div>
       <div className="navbarLinks">
         <NavLink
+          to={"/search"}
           className={({ isActive }) =>
             isActive ? "navbarActive" : "navbarInactive"
           }
@@ -14,6 +15,7 @@ const Navbar = () => {
           Search
         </NavLink>
         <NavLink
+          to={"/favourites"}
           className={({ isActive }) =>
             isActive ? "navbarActive" : "navbarInactive"
           }
@@ -21,6 +23,7 @@ const Navbar = () => {
           Favourites
         </NavLink>
         <NavLink
+          to={"/wanttowatch"}
           className={({ isActive }) =>
             isActive ? "navbarActive" : "navbarInactive"
           }
@@ -28,6 +31,7 @@ const Navbar = () => {
           Want to Watch
         </NavLink>
         <NavLink
+          to={"/watched"}
           className={({ isActive }) =>
             isActive ? "navbarActive" : "navbarInactive"
           }
