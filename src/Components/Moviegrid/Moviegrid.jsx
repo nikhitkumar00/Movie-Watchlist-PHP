@@ -1,14 +1,7 @@
 import { Button } from "@mui/material";
-import { useState } from "react";
 import "./Moviegrid.css";
 
 const Moviegrid = (props) => {
-  const [favorites, setFavorites] = useState([]);
-
-  const addToFavorites = (movie) => {
-    setFavorites((prevFavorites) => [...prevFavorites, movie]);
-  };
-
   return (
     <div className="movieWrapper">
       {props.movies.map((movie, index) => (
@@ -20,11 +13,7 @@ const Moviegrid = (props) => {
             <h2 className="moviename">{movie.Title}</h2>
             <h5 className="movieyear">{movie.Year}</h5>
             <div className="movieboxaction">
-              <Button
-                variant="contained"
-                size="small"
-                onClick={() => addToFavorites(movie)}
-              >
+              <Button variant="contained" size="small">
                 {props.button1}
               </Button>
               <Button variant="outlined" size="small">
