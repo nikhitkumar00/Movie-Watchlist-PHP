@@ -20,6 +20,36 @@ const Search = () => {
     getMovies();
   }, [search]);
 
+  const handleFavourite = async (movieId) => {
+    try {
+      const response = await fetch(`http://localhost/movietracker_backend/addfavourite.php?movieId=${movieId}`);
+      const data = await response.json();
+
+      if (data.success) {
+        console.log('Movie added to favourites');
+      } else {
+        console.error('Error adding movie to favourites');
+      }
+    } catch (error) {
+      console.error('Error adding movie to favourites:', error);
+    }
+  };
+
+  const handleWantowatch = async (movieId) => {
+    try {
+      const response = await fetch(`http://localhost/movietracker_backend/addwanttowatch.php?movieId=${movieId}`);
+      const data = await response.json();
+
+      if (data.success) {
+        console.log('Movie marked as want to watch');
+      } else {
+        console.error('Error marking movie as want to watch');
+      }
+    } catch (error) {
+      console.error('Error marking movie as want to watch:', error);
+    }
+  };
+
   return (
     <div className="searchWrapper">
       <TextField
@@ -31,7 +61,13 @@ const Search = () => {
         }}
       />
       <div className="searchContent">
-        <Moviegrid movies={movies} button1={"Favourite"} button2={"Watched"}/>
+        <Moviegrid
+          movies={movies}
+          button1={"Favourite"}
+          button2={"Wish"}
+          onButton1Click={(movieId) => handleFavourite(movieId)}
+          onButton2Click={(movieId) => handleWantowatch(movieId)}
+        />
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import "./Favourites.css";
@@ -47,7 +47,7 @@ const Favourites = () => {
       if (data.success) {
         toast.success('Movie removed successfully');
 
-        const updatedMovies = movies.filter(movie => movie.id !== movieId);
+        const updatedMovies = movies.filter(movie => movie.imdbID !== movieId);
         setMovies(updatedMovies);
       } else {
         toast.error('Error removing movie');
@@ -67,7 +67,7 @@ const Favourites = () => {
         toast.success('Movie marked as watched');
 
         const updatedMovies = movies.map(movie => {
-          if (movie.id === movieId) {
+          if (movie.imdbID === movieId) {
             return { ...movie, watched: true };
           }
           return movie;

@@ -13,7 +13,7 @@ const Watched = () => {
         toast.dismiss();
 
         toast.promise(
-          fetch("http://localhost/movietracker_backend/wanttowatch.php")
+          fetch("http://localhost/movietracker_backend/watched.php")
             .then((response) => response.json())
             .then((data) => {
               const urls = data.map(

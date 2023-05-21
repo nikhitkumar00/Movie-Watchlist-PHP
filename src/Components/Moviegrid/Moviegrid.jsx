@@ -1,3 +1,4 @@
+import React from "react";
 import "./Moviegrid.css";
 import Buttonlayout from "../Buttonlayout/Buttonlayout";
 
@@ -12,7 +13,12 @@ const Moviegrid = (props) => {
             </div>
             <h2 className="moviename">{movie.Title}</h2>
             <h5 className="movieyear">{movie.Year}</h5>
-            <Buttonlayout button1={props.button1} button2={props.button2} />
+            <Buttonlayout
+              button1={props.button1}
+              button2={props.button2}
+              onButton1Click={() => props.onButton1Click(movie.imdbID)}
+              onButton2Click={() => props.onButton2Click(movie.imdbID)}
+            />
           </div>
         </div>
       ))}
