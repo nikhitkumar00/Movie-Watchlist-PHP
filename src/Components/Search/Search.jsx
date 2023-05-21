@@ -1,11 +1,15 @@
-import { Input, TextField } from "@mui/material";
+import { TextField, Button } from "@mui/material";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Moviegrid from "../Moviegrid/Moviegrid";
 import "./Search.css";
-import { useState, useEffect } from "react";
+import { Favorite } from "@mui/icons-material";
+import Favorites from "../Favorites/Favourites";
 
 const Search = () => {
   const [movies, setMovies] = useState([]);
   const [search, setSearch] = useState("");
+  const [favourites, setFavourites] = useState([]);
 
   const getMovies = async () => {
     const URL = `http://www.omdbapi.com/?apikey=9027a6a0&s=${search}`;
@@ -16,9 +20,14 @@ const Search = () => {
     }
   };
 
+  const addToFavourites = (movie) => {
+    setFavourites((prevFavourites) => [...prevFavourites, movie]);
+  };
+
   useEffect(() => {
     getMovies();
   }, [search]);
+
   return (
     <div className="searchWrapper">
       <TextField
@@ -30,7 +39,7 @@ const Search = () => {
         }}
       />
       <div className="searchContent">
-        <Moviegrid movies={movies} />
+        <Moviegrid movies={movies} button1={"Favourite"} button2={"Watched"} addToFavourites={addToFavourites} />
       </div>
     </div>
   );
