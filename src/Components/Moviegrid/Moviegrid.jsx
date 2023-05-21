@@ -1,5 +1,5 @@
-import { Button } from "@mui/material";
 import "./Moviegrid.css";
+import Buttonlayout from "../Buttonlayout/Buttonlayout";
 
 const Moviegrid = (props) => {
   return (
@@ -12,14 +12,7 @@ const Moviegrid = (props) => {
             </div>
             <h2 className="moviename">{movie.Title}</h2>
             <h5 className="movieyear">{movie.Year}</h5>
-            <div className="movieboxaction">
-              <Button variant="contained" size="small">
-                {props.button1}
-              </Button>
-              <Button variant="outlined" size="small">
-                {props.button2}
-              </Button>
-            </div>
+            <Buttonlayout button1={props.button1} button2={props.button2} />
           </div>
         </div>
       ))}

@@ -18,12 +18,6 @@
     text-align: center;
 }
 
-.movieboxaction {
-    display: flex;
-    gap: 5px;
-    margin-bottom: 10px;
-}
-
 .movieimage {
  width: 100%;
  height: 300px;
