@@ -1,83 +1,53 @@
 import "./Watched.css";
 import Moviegrid from "../Moviegrid/Moviegrid";
+import "react-toastify/dist/ReactToastify.css";
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 const Watched = () => {
-    const watched = [
-        {
-          "Title": "Batman Begins",
-          "Year": "2005",
-          "imdbID": "tt0372784",
-          "Type": "movie",
-          "Poster": "https://m.media-amazon.com/images/M/MV5BOTY4YjI2N2MtYmFlMC00ZjcyLTg3YjEtMDQyM2ZjYzQ5YWFkXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg"
-        },
-        {
-          "Title": "Batman v Superman: Dawn of Justice",
-          "Year": "2016",
-          "imdbID": "tt2975590",
-          "Type": "movie",
-          "Poster": "https://m.media-amazon.com/images/M/MV5BYThjYzcyYzItNTVjNy00NDk0LTgwMWQtYjMwNmNlNWJhMzMyXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg"
-        },
-        {
-          "Title": "The Batman",
-          "Year": "2022",
-          "imdbID": "tt1877830",
-          "Type": "movie",
-          "Poster": "https://m.media-amazon.com/images/M/MV5BMDdmMTBiNTYtMDIzNi00NGVlLWIzMDYtZTk3MTQ3NGQxZGEwXkEyXkFqcGdeQXVyMzMwOTU5MDk@._V1_SX300.jpg"
-        },
-        {
-          "Title": "Batman",
-          "Year": "1989",
-          "imdbID": "tt0096895",
-          "Type": "movie",
-          "Poster": "https://m.media-amazon.com/images/M/MV5BZDNjOGNhN2UtNmNhMC00YjU4LWEzMmUtNzRkM2RjN2RiMjc5XkEyXkFqcGdeQXVyMTU0OTM5ODc1._V1_SX300.jpg"
-        },
-        {
-          "Title": "Batman Returns",
-          "Year": "1992",
-          "imdbID": "tt0103776",
-          "Type": "movie",
-          "Poster": "https://m.media-amazon.com/images/M/MV5BOGZmYzVkMmItM2NiOS00MDI3LWI4ZWQtMTg0YWZkODRkMmViXkEyXkFqcGdeQXVyODY0NzcxNw@@._V1_SX300.jpg"
-        },
-        {
-          "Title": "Batman & Robin",
-          "Year": "1997",
-          "imdbID": "tt0118688",
-          "Type": "movie",
-          "Poster": "https://m.media-amazon.com/images/M/MV5BMGQ5YTM1NmMtYmIxYy00N2VmLWJhZTYtN2EwYTY3MWFhOTczXkEyXkFqcGdeQXVyNTA2NTI0MTY@._V1_SX300.jpg"
-        },
-        {
-          "Title": "Batman Forever",
-          "Year": "1995",
-          "imdbID": "tt0112462",
-          "Type": "movie",
-          "Poster": "https://m.media-amazon.com/images/M/MV5BNDdjYmFiYWEtYzBhZS00YTZkLWFlODgtY2I5MDE0NzZmMDljXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg"
-        },
-        {
-          "Title": "The Lego Batman Movie",
-          "Year": "2017",
-          "imdbID": "tt4116284",
-          "Type": "movie",
-          "Poster": "https://m.media-amazon.com/images/M/MV5BMTcyNTEyOTY0M15BMl5BanBnXkFtZTgwOTAyNzU3MDI@._V1_SX300.jpg"
-        },
-        {
-          "Title": "Batman: The Animated Series",
-          "Year": "1992–1995",
-          "imdbID": "tt0103359",
-          "Type": "series",
-          "Poster": "https://m.media-amazon.com/images/M/MV5BOTM3MTRkZjQtYjBkMy00YWE1LTkxOTQtNDQyNGY0YjYzNzAzXkEyXkFqcGdeQXVyOTgwMzk1MTA@._V1_SX300.jpg"
-        },
-        {
-          "Title": "Batman v Superman: Dawn of Justice (Ultimate Edition)",
-          "Year": "2016",
-          "imdbID": "tt18689424",
-          "Type": "movie",
-          "Poster": "https://m.media-amazon.com/images/M/MV5BOTRlNWQwM2ItNjkyZC00MGI3LThkYjktZmE5N2FlMzcyNTIyXkEyXkFqcGdeQXVyMTEyNzgwMDUw._V1_SX300.jpg"
-        }
-      ]
-    return (
-      <div className="favouriteWrapper">
-          <Moviegrid movies={watched} button1={"Favourites"} button2={"Remove"}/>
-      </div>
+  const [watched, setWatched] = useState([]);
+
+  useEffect(() => {
+    const fetchMovies = async () => {
+      try {
+        toast.dismiss();
+
+        toast.promise(
+          fetch("http://localhost/movietracker_backend/wanttowatch.php")
+            .then((response) => response.json())
+            .then((data) => {
+              const urls = data.map(
+                (imdbID) =>
+                  `http://www.omdbapi.com/?apikey=9027a6a0&i=${imdbID}`
+              );
+              return Promise.all(urls.map((url) => fetch(url))).then(
+                (responses) =>
+                  Promise.all(responses.map((response) => response.json()))
+              );
+            })
+            .then((movieData) => {
+              setWatched(movieData);
+              return movieData;
+            }),
+          {
+            pending: "Loading...",
+            success: "Movies fetched successfully!",
+            error: "Error fetching movies",
+          }
+        );
+      } catch (error) {
+        console.error("Error fetching movie data:", error);
+        toast.error("Error fetching movie data");
+      }
+    };
+
+    fetchMovies();
+  }, []);
+
+  return (
+    <div className="favouriteWrapper">
+      <Moviegrid movies={watched} button1={"Remove"} button2={"idk"} />
+    </div>
   );
 };
 
