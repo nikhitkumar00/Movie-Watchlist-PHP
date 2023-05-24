@@ -1,7 +1,21 @@
+import { useState } from "react";
 import "./Navbar.css";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
+  const [dark, setDark] = useState(false);
+
+  const switchtheme = () => {
+    if (dark) {
+      document.documentElement.style.setProperty("--text-color", "black");
+      document.documentElement.style.setProperty("--background-color", "white");
+    }
+    else {
+      document.documentElement.style.setProperty("--text-color", "white");
+      document.documentElement.style.setProperty("--background-color", "#242424");
+    }
+    setDark(!dark);
+  };
   return (
     <div className="navbarWrapper">
       <div className="navbarHeader">NIKHIT KUMAR</div>
@@ -38,6 +52,9 @@ const Navbar = () => {
         >
           Watched
         </NavLink>
+        <div className="navbarInactive" onClick={switchtheme}>
+          Theme Switch
+        </div>
       </div>
     </div>
   );

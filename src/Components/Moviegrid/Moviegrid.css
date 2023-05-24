@@ -32,10 +32,12 @@ img {
 .moviename {
     font-family: 'Comfortaa';
     font-size: 15px;
+    color: var(--text-color);
 }
 
 .movieyear {
     font-family: 'Comfortaa';
     font-size: 13px;
     padding-bottom: 5px;
+    color: var(--text-color);
 }

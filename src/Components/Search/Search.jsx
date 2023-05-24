@@ -1,4 +1,4 @@
-import { TextField } from "@mui/material";
+import { TextField, colors } from "@mui/material";
 import { useState, useEffect } from "react";
 import Moviegrid from "../Moviegrid/Moviegrid";
 import "./Search.css";

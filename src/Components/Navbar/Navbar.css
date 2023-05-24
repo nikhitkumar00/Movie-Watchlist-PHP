@@ -12,6 +12,7 @@
     justify-content: center;
     font-size: 30px;
     padding-top: 20px;
+    color: var(--text-color);
 }
 
 .navbarLinks {
@@ -36,6 +37,7 @@
 }
 
 .navbarInactive {
+    cursor: pointer;
     width: 90%;
     height: 50px;
     display: flex;
