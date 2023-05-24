@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa&family=Bruno+Ace&display=swap');
 * {
     margin: 0px;
-    padding: 0px;
+    padding: 0px; 
+}
+
+:root {
+    --background-color : white;
+    --text-color : black;
 }

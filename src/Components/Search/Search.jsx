@@ -64,7 +64,7 @@ const Search = () => {
         <Moviegrid
           movies={movies}
           button1={"Favourite"}
-          button2={"Wish"}
+          button2={"Wishlist"}
           onButton1Click={(movieId) => handleFavourite(movieId)}
           onButton2Click={(movieId) => handleWantowatch(movieId)}
         />

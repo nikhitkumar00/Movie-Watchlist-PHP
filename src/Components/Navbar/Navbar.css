@@ -1,6 +1,7 @@
 .navbarWrapper {
     min-width: 300px;
     height: 100vh;
+    background-color:var(--background-color);
 }
 
 .navbarHeader {
@@ -30,8 +31,8 @@
     text-decoration: none;
     font-family: 'Comfortaa';
     border-radius: 10px;
-    border: 1px solid black;
-    color: black;
+    border: 1px solid var(--text-color );
+    color: var(--text-color);
 }
 
 .navbarInactive {
@@ -43,6 +44,6 @@
     text-decoration: none;
     font-family: 'Comfortaa';
     border-radius: 10px;
-    box-shadow: 0px 0px 1px black;
-    color: black;
+    box-shadow: 0px 0px 1px var(--text-color );
+    color: var(--text-color );
 }
