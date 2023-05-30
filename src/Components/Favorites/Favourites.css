@@ -1,6 +1,6 @@
 .favouriteWrapper{
     width: 100%;
-    height: 100vh;
+    height: calc(100ch - 100px);
     padding: 50px;
     background-color:var(--background-color);
 }

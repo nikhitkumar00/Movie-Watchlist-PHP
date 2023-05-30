@@ -46,44 +46,40 @@ const Wanttowatch = () => {
 
   const handleRemove = async (movieId) => {
     try {
-      const response = await fetch(`http://localhost/movietracker_backend/removewanttowatch.php?movieId=${movieId}`);
+      const response = await fetch(
+        `http://localhost/movietracker_backend/removewanttowatch.php?movieId=${movieId}`
+      );
       const data = await response.json();
 
       if (data.success) {
-        toast.success('Movie removed successfully');
+        toast.success("Movie removed successfully");
 
-        const updatedMovies = want.filter(movie => movie.imdbID !== movieId);
+        const updatedMovies = want.filter((movie) => movie.imdbID !== movieId);
         setWant(updatedMovies);
       } else {
-        toast.error('Error removing movie');
+        toast.error("Error removing movie");
       }
     } catch (error) {
-      console.error('Error removing movie:', error);
-      toast.error('Error removing movie');
+      console.error("Error removing movie:", error);
+      toast.error("Error removing movie");
     }
   };
 
-  const handleWatched = async (imdbID) => {
+  const handleWatched = async (movieId) => {
     try {
       const response = await fetch(
-        "http://localhost/movietracker_backend/addwatched.php",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ imdbID }),
-        }
+        `http://localhost/movietracker_backend/addwatched.php?movieId=${movieId}`
       );
+      const data = await response.json();
 
-      if (response.ok) {
-        toast.success("Movie marked as watched!");
+      if (data.success) {
+        toast.success("Movie added successfully");
       } else {
-        toast.error("Error marking movie as watched");
+        toast.error("Error removing movie");
       }
     } catch (error) {
-      console.error("Error marking movie as watched:", error);
-      toast.error("Error marking movie as watched");
+      console.error("Error adding movie:", error);
+      toast.error("Error adding movie");
     }
   };
 

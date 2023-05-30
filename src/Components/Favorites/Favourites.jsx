@@ -64,21 +64,13 @@ const Favourites = () => {
       const data = await response.json();
 
       if (data.success) {
-        toast.success('Movie marked as watched');
-
-        const updatedMovies = movies.map(movie => {
-          if (movie.imdbID === movieId) {
-            return { ...movie, watched: true };
-          }
-          return movie;
-        });
-        setMovies(updatedMovies);
+        toast.success('Movie added successfully');
       } else {
-        toast.error('Error marking movie as watched');
+        toast.error('Error removing movie');
       }
     } catch (error) {
-      console.error('Error marking movie as watched:', error);
-      toast.error('Error marking movie as watched');
+      console.error('Error adding movie:', error);
+      toast.error('Error adding movie');
     }
   };
 

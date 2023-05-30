@@ -44,9 +44,33 @@ const Watched = () => {
     fetchMovies();
   }, []);
 
+  const handleRemove = async (movieId) => {
+    try {
+      const response = await fetch(`http://localhost/movietracker_backend/removewatched.php?movieId=${movieId}`);
+      const data = await response.json();
+
+      if (data.success) {
+        toast.success('Movie removed successfully');
+
+        const updatedMovies = watched.filter(movie => movie.imdbID !== movieId);
+        setWatched(updatedMovies);
+      } else {
+        toast.error('Error removing movie');
+      }
+    } catch (error) {
+      console.error('Error removing movie:', error);
+      toast.error('Error removing movie');
+    }
+  };
+
   return (
     <div className="favouriteWrapper">
-      <Moviegrid movies={watched} button1={"Remove"} button2={"idk"} />
+      <Moviegrid
+        movies={watched}
+        button1={"Remove"}
+        button2={"idk"}
+        onButton1Click={handleRemove}
+      />
     </div>
   );
 };
