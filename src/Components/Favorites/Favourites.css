@@ -4,3 +4,10 @@
     padding: 50px;
     background-color:var(--background-color);
 }
+@media (max-width: 770px) {
+    .favouriteWrapper{
+        padding: 0px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+}
