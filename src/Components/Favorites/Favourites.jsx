@@ -27,12 +27,12 @@ const Favourites = () => {
           {
             pending: 'Loading...',
             success: 'Movies fetched successfully!',
-            error: 'Error fetching movies',
+            error: 'Database not connected',
           }
         );
       } catch (error) {
         console.error('Error fetching movie data:', error);
-        toast.error('Error fetching movie data');
+        toast.notify("Database not connected");
       }
     };
 
