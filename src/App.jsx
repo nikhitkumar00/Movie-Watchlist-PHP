@@ -1,4 +1,4 @@
-import { Slide, ToastContainer } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "./App.css";
 import Navbar from "./Components/Navbar/Navbar";
 import { Outlet } from "react-router-dom";
