@@ -27,7 +27,7 @@ const Navbar = () => {
       <div className="navbarHeader">NIKHIT KUMAR</div>
       <div className="navbarLinks">
         <NavLink
-          to={"/search"}
+          to={"/"}
           className={({ isActive }) =>
             isActive ? "navbarActive" : "navbarInactive"
           }
