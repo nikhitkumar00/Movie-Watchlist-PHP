@@ -32,12 +32,12 @@ const Wanttowatch = () => {
           {
             pending: "Loading...",
             success: "Movies fetched successfully!",
-            error: "Error fetching movies",
+            error: "Database not connected",
           }
         );
       } catch (error) {
         console.error("Error fetching movie data:", error);
-        toast.error("Error fetching movie data");
+        toast.error("Database not connected");
       }
     };
 
@@ -61,7 +61,7 @@ const Wanttowatch = () => {
       }
     } catch (error) {
       console.error("Error removing movie:", error);
-      toast.error("Error removing movie");
+      toast.error("Database not connected");
     }
   };
 
@@ -79,7 +79,7 @@ const Wanttowatch = () => {
       }
     } catch (error) {
       console.error("Error adding movie:", error);
-      toast.error("Error adding movie");
+      toast.error("Database not connected");
     }
   };
 

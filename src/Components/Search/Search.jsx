@@ -1,5 +1,6 @@
 import { TextField } from "@mui/material";
 import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 import Moviegrid from "../Moviegrid/Moviegrid";
 import "./Search.css";
 
@@ -8,7 +9,7 @@ const Search = () => {
   const [search, setSearch] = useState("");
 
   const getMovies = async () => {
-    const URL = `http://www.omdbapi.com/?apikey=9027a6a0&s=${search}`;
+    const URL = `https://www.omdbapi.com/?apikey=9027a6a0&s=${search}`;
     const res = await fetch(URL);
     const data = await res.json();
     if (data.Search) {
@@ -32,6 +33,7 @@ const Search = () => {
       }
     } catch (error) {
       console.error('Error adding movie to favourites:', error);
+      toast.notify("Database not connected");
     }
   };
 
@@ -47,6 +49,7 @@ const Search = () => {
       }
     } catch (error) {
       console.error('Error marking movie as want to watch:', error);
+      toast.notify("Database not connected");
     }
   };
 

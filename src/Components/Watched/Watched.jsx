@@ -32,12 +32,12 @@ const Watched = () => {
           {
             pending: "Loading...",
             success: "Movies fetched successfully!",
-            error: "Error fetching movies",
+            error: "Database not connected",
           }
         );
       } catch (error) {
         console.error("Error fetching movie data:", error);
-        toast.error("Error fetching movie data");
+        toast.error("Database not connected");
       }
     };
 
@@ -59,7 +59,7 @@ const Watched = () => {
       }
     } catch (error) {
       console.error('Error removing movie:', error);
-      toast.error('Error removing movie');
+      toast.error('Database not connected');
     }
   };
 
