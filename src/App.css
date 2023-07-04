@@ -1,6 +1,6 @@
-.appWrapper{
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    background-color: var(--background-color);
+.appWrapper {
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	background-color: var(--background-color);
 }

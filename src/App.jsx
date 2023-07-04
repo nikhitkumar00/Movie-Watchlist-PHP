@@ -5,22 +5,22 @@ import { Outlet } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
-  return (
-    <div className="appWrapper">
-      <Navbar />
-      <Outlet />
-      <ToastContainer
-        position="top-right"
-        newestOnTop={true}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="colored"
-      />
-    </div>
-  );
+	return (
+		<div className="appWrapper">
+			<Navbar />
+			<Outlet />
+			<ToastContainer
+				position="top-right"
+				newestOnTop={true}
+				closeOnClick
+				rtl={false}
+				pauseOnFocusLoss
+				draggable
+				pauseOnHover
+				theme="colored"
+			/>
+		</div>
+	);
 }
 
 export default App;

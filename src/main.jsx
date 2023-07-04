@@ -1,41 +1,41 @@
-import { createBrowserRouter, RouterProvider} from "react-router-dom";
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import './main.css'
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./main.css";
 
-import App from './App.jsx'
-import Search from './Components/Search/Search'
-import Favourites from './Components/Favorites/Favourites'
-import Wanttowatch from './Components/Wanttowatch/Wanttowatch'
-import Watched from './Components/Watched/Watched'
+import App from "./App.jsx";
+import Search from "./Components/Search/Search";
+import Favourites from "./Components/Favorites/Favourites";
+import Wanttowatch from "./Components/Wanttowatch/Wanttowatch";
+import Watched from "./Components/Watched/Watched";
 
 const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />,
-    children: [
-      {
-        path: "/",
-        element:<Search />
-      },
-      {
-        path: "/favourites",
-        element:<Favourites />
-      },
-      {
-        path: "/wanttowatch",
-        element:<Wanttowatch />
-      },
-      {
-        path: "/watched",
-        element:<Watched />
-      },
-    ]
-  }
-])
+	{
+		path: "/",
+		element: <App />,
+		children: [
+			{
+				path: "/",
+				element: <Search />,
+			},
+			{
+				path: "/favourites",
+				element: <Favourites />,
+			},
+			{
+				path: "/wanttowatch",
+				element: <Wanttowatch />,
+			},
+			{
+				path: "/watched",
+				element: <Watched />,
+			},
+		],
+	},
+]);
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <RouterProvider router={router} className= ".dark"/>
-  </React.StrictMode>,
-)
+ReactDOM.createRoot(document.getElementById("root")).render(
+	<React.StrictMode>
+		<RouterProvider router={router} className=".dark" />
+	</React.StrictMode>
+);
