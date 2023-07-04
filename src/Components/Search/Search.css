@@ -1,13 +1,13 @@
-.searchWrapper{
-    width: 100%;
-    padding: 10px;
-    padding-top: 20px;
-    gap: 50px;
-    display: flex;
-    flex-direction: column;
-    background-color:var(--background-color);
+.searchWrapper {
+	width: 100%;
+	padding: 10px;
+	padding-top: 20px;
+	gap: 50px;
+	display: flex;
+	flex-direction: column;
+	background-color: var(--background-color);
 }
 
 .searchContent {
-    width: 100%;
+	width: 100%;
 }

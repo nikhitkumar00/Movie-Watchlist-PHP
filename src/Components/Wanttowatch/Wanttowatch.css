@@ -1,14 +1,14 @@
-.wantWrapper{
-    width: 100%;
-    height: 100vh;
-    padding: 50px;
-    background-color:var(--background-color);
+.wantWrapper {
+	width: 100%;
+	height: 100vh;
+	padding: 50px;
+	background-color: var(--background-color);
 }
 
 @media (max-width: 770px) {
-    .wantWrapper{
-        padding: 0px;
-        padding-top: 20px;
-        padding-bottom: 20px;
-    }
+	.wantWrapper {
+		padding: 0px;
+		padding-top: 20px;
+		padding-bottom: 20px;
+	}
 }

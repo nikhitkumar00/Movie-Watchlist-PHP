@@ -1,6 +1,6 @@
 .buttonwrapper {
-    display: flex;
-    gap: 5px;
-    margin-bottom: 10px;
-    background-color:var(--background-color);
+	display: flex;
+	gap: 5px;
+	margin-bottom: 10px;
+	background-color: var(--background-color);
 }

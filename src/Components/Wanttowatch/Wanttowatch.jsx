@@ -5,95 +5,102 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 const Wanttowatch = () => {
-  const [want, setWant] = useState([]);
+	const [want, setWant] = useState([]);
 
-  useEffect(() => {
-    const fetchMovies = async () => {
-      try {
-        toast.dismiss();
+	useEffect(() => {
+		const fetchMovies = async () => {
+			try {
+				toast.dismiss();
 
-        toast.promise(
-          fetch("http://localhost/movietracker_backend/wanttowatch.php")
-            .then((response) => response.json())
-            .then((data) => {
-              const urls = data.map(
-                (imdbID) =>
-                  `http://www.omdbapi.com/?apikey=9027a6a0&i=${imdbID}`
-              );
-              return Promise.all(urls.map((url) => fetch(url))).then(
-                (responses) =>
-                  Promise.all(responses.map((response) => response.json()))
-              );
-            })
-            .then((movieData) => {
-              setWant(movieData);
-              return movieData;
-            }),
-          {
-            pending: "Loading...",
-            success: "Movies fetched successfully!",
-            error: "Database not connected",
-          }
-        );
-      } catch (error) {
-        console.error("Error fetching movie data:", error);
-        toast.error("Database not connected");
-      }
-    };
+				toast.promise(
+					fetch(
+						"http://localhost/movietracker_backend/wanttowatch.php"
+					)
+						.then((response) => response.json())
+						.then((data) => {
+							const urls = data.map(
+								(imdbID) =>
+									`http://www.omdbapi.com/?apikey=9027a6a0&i=${imdbID}`
+							);
+							return Promise.all(
+								urls.map((url) => fetch(url))
+							).then((responses) =>
+								Promise.all(
+									responses.map((response) => response.json())
+								)
+							);
+						})
+						.then((movieData) => {
+							setWant(movieData);
+							return movieData;
+						}),
+					{
+						pending: "Loading...",
+						success: "Movies fetched successfully!",
+						error: "Database not connected",
+					}
+				);
+			} catch (error) {
+				console.error("Error fetching movie data:", error);
+				toast.error("Database not connected");
+			}
+		};
 
-    fetchMovies();
-  }, []);
+		fetchMovies();
+	}, []);
 
-  const handleRemove = async (movieId) => {
-    try {
-      const response = await fetch(
-        `http://localhost/movietracker_backend/removewanttowatch.php?movieId=${movieId}`
-      );
-      const data = await response.json();
+	const handleRemove = async (movieId) => {
+		try {
+			const response = await fetch(
+				`http://localhost/movietracker_backend/removewanttowatch.php?movieId=${movieId}`
+			);
+			const data = await response.json();
 
-      if (data.success) {
-        toast.success("Movie removed successfully");
+			if (data.success) {
+				toast.success("Movie removed successfully");
 
-        const updatedMovies = want.filter((movie) => movie.imdbID !== movieId);
-        setWant(updatedMovies);
-      } else {
-        toast.error("Error removing movie");
-      }
-    } catch (error) {
-      console.error("Error removing movie:", error);
-      toast.error("Database not connected");
-    }
-  };
+				const updatedMovies = want.filter(
+					(movie) => movie.imdbID !== movieId
+				);
+				setWant(updatedMovies);
+			} else {
+				toast.error("Error removing movie");
+			}
+		} catch (error) {
+			console.error("Error removing movie:", error);
+			toast.error("Database not connected");
+		}
+	};
 
-  const handleWatched = async (movieId) => {
-    try {
-      const response = await fetch(
-        `http://localhost/movietracker_backend/addwatched.php?movieId=${movieId}`
-      );
-      const data = await response.json();
+	const handleWatched = async (movieId) => {
+		try {
+			const response = await fetch(
+				`http://localhost/movietracker_backend/addwatched.php?movieId=${movieId}`
+			);
+			const data = await response.json();
 
-      if (data.success) {
-        toast.success("Movie added successfully");
-      } else {
-        toast.error("Error removing movie");
-      }
-    } catch (error) {
-      console.error("Error adding movie:", error);
-      toast.error("Database not connected");
-    }
-  };
+			if (data.success) {
+				toast.success("Movie added successfully");
+			} else {
+				toast.error("Error removing movie");
+			}
+		} catch (error) {
+			console.error("Error adding movie:", error);
+			toast.error("Database not connected");
+		}
+	};
 
-  return (
-    <div className="favouriteWrapper">
-      <Moviegrid
-        movies={want}
-        button1={"Remove"}
-        button2={"Watched"}
-        onButton1Click={handleRemove}
-        onButton2Click={handleWatched}
-      />
-    </div>
-  );
+	return (
+		<div className="favouriteWrapper">
+			<Moviegrid
+				movies={want}
+				button1={"Remove"}
+				button2={"Watched"}
+				onButton1Click={handleRemove}
+				onButton2Click={handleWatched}
+			/>
+		</div>
+	);
 };
 
 export default Wanttowatch;
